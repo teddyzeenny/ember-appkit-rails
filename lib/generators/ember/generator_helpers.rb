@@ -20,6 +20,14 @@ module Ember
         end
       end
 
+      def test_path
+        if options[:test_path]
+          options[:test_path]
+        else
+          configuration.paths.test
+        end
+      end
+
       def rails_engine?
         defined?(ENGINE_PATH)
       end

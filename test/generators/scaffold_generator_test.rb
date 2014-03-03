@@ -27,7 +27,7 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
 
   def assert_files
     assert_file "#{app_path}/models/post.es6"
-    assert_file "test/models/post_test.es6"
+    assert_file "#{test_path}/models/post_test.es6"
 
     assert_file "#{app_path}/routes/posts/edit.es6"
     assert_file "#{app_path}/routes/posts/index.es6"
@@ -77,19 +77,19 @@ JS
   end
 
   def assert_test_files
-    assert_file "test/routes/posts/edit_test.es6" do |content|
+    assert_file "#{test_path}/routes/posts/edit_test.es6" do |content|
       assert_match(/^import PostsEditRoute from 'app\/routes\/posts\/edit';/, content)
       assert_match(/'Unit - PostsEditRoute'/, content)
     end
-    assert_file "test/routes/posts/index_test.es6" do |content|
+    assert_file "#{test_path}/routes/posts/index_test.es6" do |content|
       assert_match(/^import PostsIndexRoute from 'app\/routes\/posts\/index';/, content)
       assert_match(/'Unit - PostsIndexRoute'/, content)
     end
-    assert_file "test/routes/posts/new_test.es6" do |content|
+    assert_file "#{test_path}/routes/posts/new_test.es6" do |content|
       assert_match(/^import PostsNewRoute from 'app\/routes\/posts\/new';/, content)
       assert_match(/'Unit - PostsNewRoute'/, content)
     end
-    assert_file "test/routes/posts/show_test.es6" do |content|
+    assert_file "#{test_path}/routes/posts/show_test.es6" do |content|
       assert_match(/^import PostsShowRoute from 'app\/routes\/posts\/show';/, content)
       assert_match(/'Unit - PostsShowRoute'/, content)
     end
