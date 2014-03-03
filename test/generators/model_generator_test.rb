@@ -24,7 +24,7 @@ class ModelGeneratorTest < Rails::Generators::TestCase
     assert_file "#{app_path}/models/post.es6", /export default DS.Model.extend/
   end
 
-  test "forces pluarl names to singular" do
+  test "forces plural names to singular" do
     run_generator ["posts"]
     assert_file "#{app_path}/models/post.es6"
     assert_no_file "#{app_path}/models/posts.es6"
@@ -47,23 +47,33 @@ class ModelGeneratorTest < Rails::Generators::TestCase
 
   test "create test" do
     run_generator ["post", "title:string"]
-    assert_file "test/models/post_test.es6"
+    assert_file "#{test_path}/models/post_test.es6"
   end
+
+
+  test "Uses config.ember.paths.test" do
+    custom_path = test_path("custom")
+    with_config paths: { test: custom_path } do
+      run_generator ["post", "title:string"]
+      assert_file "#{custom_path}/models/post_test.es6"
+    end
+  end
+
 
   test "imports model for test" do
     run_generator ["post", "title:string"]
 
-    assert_file 'test/models/post_test.es6', /^import Post from 'app\/models\/post';$/
+    assert_file "#{test_path}/models/post_test.es6", /^import Post from 'app\/models\/post';$/
   end
 
   test "create namespaced test" do
     run_generator ["post/dog", "title:string"]
-    assert_file "test/models/post/dog_test.es6"
+    assert_file "#{test_path}/models/post/dog_test.es6"
   end
 
   test "imports namespaced model for test" do
     run_generator ["post/dog", "title:string"]
 
-    assert_file 'test/models/post/dog_test.es6', /^import Dog from 'app\/models\/post\/dog';$/
+    assert_file "#{test_path}/models/post/dog_test.es6", /^import Dog from 'app\/models\/post\/dog';$/
   end
 end

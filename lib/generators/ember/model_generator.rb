@@ -15,7 +15,7 @@ module Ember
       end
 
       def create_test_files
-        file_path = File.join('test', 'models', class_path, "#{file_name.singularize}_test.es6")
+        file_path = File.join(test_path, 'models', class_path, "#{file_name.singularize}_test.es6")
         template "test/model.es6", file_path
       end
 

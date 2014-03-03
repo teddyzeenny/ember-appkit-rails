@@ -6,6 +6,7 @@ class Ember::Appkit::Rails::Engine < ::Rails::Engine
 
   config.ember.paths.app = 'app'
   config.ember.paths.config = 'config'
+  config.ember.paths.test = 'test'
   config.ember.namespaces.app = 'app'
   config.ember.namespaces.config = 'config'
   config.ember.api_version = 1

@@ -43,7 +43,7 @@ module Ember
 
         [:edit, :index, :new, :show].each do |action|
           object = "#{resource}_#{action}_#{type}".camelize
-          template "test/#{type}.es6", File.join('test', type.pluralize, "#{resource}/#{action}_test.es6"), object: object, action: action
+          template "test/#{type}.es6", File.join(test_path, type.pluralize, "#{resource}/#{action}_test.es6"), object: object, action: action
         end
       end
 
