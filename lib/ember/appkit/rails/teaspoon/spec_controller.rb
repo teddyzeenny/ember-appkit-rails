@@ -8,9 +8,19 @@ module Ember::Appkit::Rails::Teaspoon::SpecController
   end
 end
 
-ActiveSupport.on_load(:action_controller) do
+# ActiveSupport.on_load(:action_controller) do
 
-  # if defined?(Teaspoon::SpecController)
-    Teaspoon::SpecController.send(:prepend, Ember::Appkit::Rails::Teaspoon::SpecController)
+  # Fix for lazy loading
+  # This is insane but I am tired
+  # begin
+  #   Teaspoon::SpecController
+  # rescue Exception => e
+
+  # ensure
+  #   if defined?(Teaspoon::SpecController)
+  #     require 'will_paginate/finders/active_record'
+  #     Teaspoon::SpecController.send(:prepend, Ember::Appkit::Rails::Teaspoon::SpecController)
+  #   end
   # end
-end
+
+# end
